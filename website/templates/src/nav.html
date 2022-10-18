@@ -1,0 +1,26 @@
+<nav class="container-fluid snav navbar navbar-expand-md navbar-fixed-top text-uppercase text-dark">
+    <button class="navbar-toggler btn btn-outline-light" type="button" data-bs-toggle="collapse"
+        data-bs-target="#main_nav" aria-expanded="false" aria-controls="#main_nav">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="main_nav">
+        <div class="nav nav_bg">
+            <a href="{% url 'silimasoftware' %}" type="button" class="nav-link nav_font
+                    {% if page == "home" %}nav_selected{% endif %}">
+                Silimasoftware
+            </a>
+            <a href="{% url 'silimasoftware' 'about' %}" class="nav-link nav_font
+            {% if 'about' in request.path %}nav_selected{% endif %}">
+                About
+            </a>
+            <a href="{% url 'silimasoftware' 'blog' %}" class="nav-link nav_font
+            {% if 'blog' in request.path %}nav_selected{% endif %}">
+                Blog
+            </a>
+            <a href="{% url 'silimasoftware' 'contact' %}" class="nav-link nav_font
+            {% if 'contact' in request.path %}nav_selected{% endif %}">
+                Contact
+            </a>
+        </div>
+    </div>
+</nav>

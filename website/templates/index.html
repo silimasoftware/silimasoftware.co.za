@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+{% block main %}
+
+{% if nav %}
+{% include nav %}
+{% endif %}
+
+{% if template %}
+<div id="content_wrapper">{% include template %}</div>
+{% endif %}
+
+{% if footer %}
+{% include footer %}
+{% endif %}
+
+{% endblock %}

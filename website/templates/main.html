@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Silima Software - {{page_title}}</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
+  <meta property="og:site_name" content="Silima Software" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://silimasoftware.co.za{{ request.path }}" />
+  <meta property="og:title" content="Silima Software - {{page_title}}" />
+  <meta property="og:description" content="{{description}}" />
+  <meta name="description" content="{{description}}" />
+  <meta name="keywords" content="{{key_words}}" />
+  <meta name="author" content="Silima Software" />
+  <meta name="copyright" content="2022 Silima Software" />
+  <meta name="contact" content="webmaster@silimasoftware.co.za" />
+  <meta name="publisher" content="Silima Software" />
+  <meta name="robots" content="index,follow" />
+  <meta name="googlebot" content="index,follow" />
+  <meta name="Revisit-After" content="7 Days" />
+  <meta name="Distribution" content="Global" />
+  <meta name="geo.position" content="-33.9550555;25.5848913" />
+  <meta name="geo.country" content="ZA" />
+  <meta name="geo.region" content="ZA-EC" />
+  <meta name="geo.placename" content="Port Elizabeth" />
+
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bs.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+  <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+  <link href="http://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="loader-wrapper">
+    <span class="loader">
+      <i class="fa-solid fa-spinner fa-2xl loader-inner"></i>
+    </span>
+  </div>
+  <ul id="msg_queue" class="list-group alert-list" style="
+        position: fixed;
+        width: fit-content;
+        height: fit-content;
+        top: 50px;
+        right: 10px;
+        z-index: 2;
+      ">
+    {% include 'src/msgs.html' %}
+  </ul>
+  {% block main %}{% endblock %}
+</body>
+
+<script type="text/javascript" src="{% static 'js/jq.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bs.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<script src="https://kit.fontawesome.com/5834225bd5.js" crossorigin="anonymous"></script>
+{% if javascript %}
+{% for script in javascript %}
+<script type="text/javascript" src="{% static script %}"></script>
+{% endfor %}
+{% endif %}
+<script>
+  $(window).on("load", function () {
+    $(".loader-wrapper").fadeOut("slow");
+  });
+</script>
+
+</html>

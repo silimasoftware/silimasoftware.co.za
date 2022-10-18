@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  silimasoftware:
+    build: .
+    image: localhost:5000/silimasoftware:latest
+    env_file:
+      - .env
+    restart: always
+    command: bash -c "python manage.py makemigrations && python manage.py migrate &&
+      gunicorn config.wsgi:application  -b 0.0.0.0:80"
+    container_name: silimasoftware
+    volumes:
+      - ./website:/usr/src/app
+ 
+  silimasoftware_nginx:
+    image: nginx:latest
+    restart: always
+    container_name: silimasoftware_nginx
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.entrypoints=web"
+      - "traefik.http.routers.silimasoftware_nginx.rule=Host(`silimasoftware.localhost`)"
+      - "traefik.http.services.silimasoftware_nginx.loadbalancer.server.port=80"
+    volumes:
+      - ./website:/usr/src/app
+      - ./nginx:/etc/nginx/conf.d/
+    depends_on:
+      - silimasoftware
+
+  db-silimasoftware:
+    image: postgres
+    restart: always
+    container_name: db-silimasoftware 
+    env_file:
+      - .env
+    volumes:
+      - silimasoftware_data:/var/lib/postgresql/data
+
+volumes:
+  silimasoftware_data:
+
+networks:
+  default:
+    external:
+      name: hostnet
