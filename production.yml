@@ -37,8 +37,8 @@ services:
       - silimasoftware_data:/var/lib/postgresql/data
 
 volumes:
-  silimasoftware_data:
   website_data:
+  silimasoftware_data:
 
 networks:
   default:

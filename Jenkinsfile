@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'docker compose -f production.yml down'
-                sh 'docker volume rm  silimasoftware_silimasoftware_data'
+                sh 'docker volume rm  silimasoftware_website_data'
                 sh 'docker compose -f production.yml build --no-cache'
             }
         }
