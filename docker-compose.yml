@@ -8,7 +8,7 @@ services:
       - .env
     restart: always
     command: bash -c "python manage.py makemigrations && python manage.py migrate &&
-      gunicorn config.wsgi:application  -b 0.0.0.0:80"
+      gunicorn config.wsgi:application -b 0.0.0.0:80"
     container_name: silimasoftware
     volumes:
       - ./website:/usr/src/app

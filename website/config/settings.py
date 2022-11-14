@@ -1,7 +1,7 @@
 import os
 import sys
 import environ
-
+from distutils.util import strtobool
 
 env = environ.Env()
 environ.Env.read_env()
@@ -11,7 +11,7 @@ sys.path.append(os.path.join(BASE_DIR, "apps"))
 
 SECRET_KEY = env("SECRET_KEY")
 
-DEBUG = env("DEBUG")
+DEBUG = strtobool(env("DEBUG"))
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")

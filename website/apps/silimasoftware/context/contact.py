@@ -1,12 +1,6 @@
 from core.util import (
-    get_msgs,
-    send_mail,
-    SMTPException,
-    time,
-    messages,
     is_post,
     is_get,
-    bleach,
     send_contant_mail
 )
 
